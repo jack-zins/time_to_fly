@@ -20,10 +20,10 @@ class FlightAlertDestination(models.Model):
     DST_STATE = 'State'
     DST_COUNTRY = 'Country'
     DST_CHOICES = [
-        (DST_AIRPORT , 'Airport'),
-        (DST_CITY , 'City'),
-        (DST_STATE , 'State'),
-        (DST_COUNTRY , 'Country'),
+        (DST_AIRPORT, 'Airport'),
+        (DST_CITY, 'City'),
+        (DST_STATE, 'State'),
+        (DST_COUNTRY, 'Country'),
     ]
     flight_alert_request = models.ForeignKey('FlightAlertRequest', on_delete=models.CASCADE)
     destination_type = models.CharField(choices=DST_CHOICES,max_length=10)
