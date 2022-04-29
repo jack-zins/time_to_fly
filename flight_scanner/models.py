@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class FlightAlertRequest(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -10,7 +11,7 @@ class FlightAlertRequest(models.Model):
 
 
 class FlightAlertOrigin(models.Model):
-    flight_alert_request = models.ForeignKey('FlightAlertRequest' , on_delete=models.CASCADE)
+    flight_alert_request = models.ForeignKey('FlightAlertRequest', on_delete=models.CASCADE)
     airport_code = models.CharField(max_length=3)
 
 
@@ -26,5 +27,5 @@ class FlightAlertDestination(models.Model):
         (DST_COUNTRY, 'Country'),
     ]
     flight_alert_request = models.ForeignKey('FlightAlertRequest', on_delete=models.CASCADE)
-    destination_type = models.CharField(choices=DST_CHOICES,max_length=10)
+    destination_type = models.CharField(choices=DST_CHOICES, max_length=10)
     destination_name = models.CharField(max_length=250)
