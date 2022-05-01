@@ -29,3 +29,4 @@ class FlightAlertDestination(models.Model):
     flight_alert_request = models.ForeignKey('FlightAlertRequest', on_delete=models.CASCADE)
     destination_type = models.CharField(choices=DST_CHOICES, max_length=10)
     destination_name = models.CharField(max_length=250)
+
