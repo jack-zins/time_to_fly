@@ -8,6 +8,9 @@ class FlightAlertRequest(models.Model):
     end_date = models.DateField()
     layover_limit = models.IntegerField()
     layover_duration_limit = models.DurationField()
+    min_days_at_destination = models.IntegerField(default=0)
+    max_days_at_destination = models.IntegerField(default=0)
+    adults = models.IntegerField(default=1)
 
 
 class FlightAlertOrigin(models.Model):
