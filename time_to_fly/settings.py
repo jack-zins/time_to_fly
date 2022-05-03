@@ -123,3 +123,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+KIWI_API_URL = "https://tequila-api.kiwi.com/"
+KIWI_API_KEY = None
+
+
+try:
+    LOCAL_APPS = None
+    from time_to_fly.local_settings import *  # NOQA: F401,F403
+
+    if LOCAL_APPS:
+        INSTALLED_APPS += LOCAL_APPS
+except ImportError:
+    print("No local_settings.py")
