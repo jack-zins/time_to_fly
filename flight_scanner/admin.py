@@ -4,6 +4,7 @@ from flight_scanner.models import (
     FlightAlertOrigin,
     FlightAlertDestination,
 )
+from flight_scanner.services.flight_alert_services import flight_itinerary_data_save
 
 
 class FAOriginInline(admin.TabularInline):
@@ -20,3 +21,11 @@ class FlightAlertRequestAdmin(admin.ModelAdmin):
         FAOriginInline,
         FADestinationInline,
     ]
+    def save_related(self, request, form, formsets, change):
+        super().save_related(request, form, formsets, change)
+        flight_itinerary_data_save(form.instance)
+
+
+@admin.register(FlightSearchResults)
+class FlightSearchResultsAdmin(admin.ModelAdmin):
+    inlines = []
