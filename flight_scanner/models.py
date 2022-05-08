@@ -1,7 +1,7 @@
 from django.db import models
 
 
-# Create your models here.
+
 class FlightAlertRequest(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     start_date = models.DateField()
@@ -33,3 +33,11 @@ class FlightAlertDestination(models.Model):
     destination_type = models.CharField(choices=DST_CHOICES, max_length=10)
     destination_name = models.CharField(max_length=250)
 
+
+class FlightSearchResults(models.Model):
+    trip_id = models.CharField(max_length=250)
+    flight_origin = models.CharField(max_length=4)
+    flight_destination = models.CharField(max_length=4)
+    flight_price = models.IntegerField()
+    airliner_code = models.CharField(max_length=15)
+    flight_itinerary = models.JSONField()
