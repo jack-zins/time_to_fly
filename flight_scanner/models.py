@@ -34,7 +34,7 @@ class FlightAlertDestination(models.Model):
     destination_name = models.CharField(max_length=250)
 
 
-class FlightSearchResults(models.Model):
+class FlightSearchResult(models.Model):
     trip_id = models.CharField(max_length=250)
     flight_origin = models.CharField(max_length=4)
     flight_destination = models.CharField(max_length=4)

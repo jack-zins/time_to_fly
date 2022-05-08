@@ -1,5 +1,5 @@
 from django.conf import settings
-from flight_scanner.models import *
+from flight_scanner.models import FlightAlertRequest,FlightSearchResult
 import requests
 
 
@@ -44,7 +44,7 @@ def search_flights(far: FlightAlertRequest):
 
 def flight_itinerary_data_save(far:FlightAlertRequest):
     for result in search_flights(far)['data']:
-        fsr = FlightSearchResults()
+        fsr = FlightSearchResult()
         fsr.flight_itinerary = result
         fsr.trip_id = result['id']
         fsr.flight_origin = result['flyFrom']
