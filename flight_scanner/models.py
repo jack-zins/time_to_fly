@@ -46,5 +46,4 @@ class FlightSearchResult(models.Model):
 class FlightSearchResultPriceHistory(models.Model):
     flight_search_result = models.ForeignKey('FlightSearchResult', on_delete=models.CASCADE)
     price = models.IntegerField()
-    leave_date = models.DateField()
-    return_date = models.DateField()
+    date = models.DateField()

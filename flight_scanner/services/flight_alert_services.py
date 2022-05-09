@@ -50,10 +50,8 @@ def flight_itinerary_data_save(far:FlightAlertRequest):
             'flight_destination':result['fly_to'],
             'airliner_code':result['airlines'],
             'flight_itinerary':result})
-        FlightSearchResultPriceHistory.objects.update_or_create(flight_search_result=fsr,defaults=
-        {'price':result['price'],
-         'leave_date':result['local_departure'],
-         'return_date':result['local_arrival'],})
+        FlightSearchResultPriceHistory.objects.update_or_create(flight_search_result=fsr,date=now(),defaults=
+        {'price':result['price'],})
 
 
 def update_flight_alert_request_task():
