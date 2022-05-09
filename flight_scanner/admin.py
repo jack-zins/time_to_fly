@@ -3,7 +3,8 @@ from flight_scanner.models import (
     FlightAlertRequest,
     FlightAlertOrigin,
     FlightAlertDestination,
-    FlightSearchResult, FlightSearchResultPriceHistory,
+    FlightSearchResult, 
+    FlightSearchResultPriceHistory,
 )
 from flight_scanner.services.flight_alert_services import flight_itinerary_data_save
 
