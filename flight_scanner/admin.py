@@ -2,7 +2,8 @@ from django.contrib import admin
 from flight_scanner.models import (
     FlightAlertRequest,
     FlightAlertOrigin,
-    FlightAlertDestination, FlightSearchResult,
+    FlightAlertDestination, 
+    FlightSearchResult,
 )
 from flight_scanner.services.flight_alert_services import flight_itinerary_data_save
 
