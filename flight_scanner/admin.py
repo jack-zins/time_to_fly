@@ -2,8 +2,8 @@ from django.contrib import admin
 from flight_scanner.models import (
     FlightAlertRequest,
     FlightAlertOrigin,
-    FlightAlertDestination, 
-    FlightSearchResult,
+    FlightAlertDestination,
+    FlightSearchResult, FlightSearchResultPriceHistory,
 )
 from flight_scanner.services.flight_alert_services import flight_itinerary_data_save
 
@@ -14,6 +14,9 @@ class FAOriginInline(admin.TabularInline):
 
 class FADestinationInline(admin.TabularInline):
     model = FlightAlertDestination
+
+class FSRPHInline(admin.TabularInline):
+    model = FlightSearchResultPriceHistory
 
 
 @admin.register(FlightAlertRequest)
@@ -29,4 +32,6 @@ class FlightAlertRequestAdmin(admin.ModelAdmin):
 
 @admin.register(FlightSearchResult)
 class FlightSearchResultsAdmin(admin.ModelAdmin):
-    inlines = []
+    inlines = [
+        FSRPHInline,
+    ]

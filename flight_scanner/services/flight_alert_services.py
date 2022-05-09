@@ -1,5 +1,5 @@
 from django.conf import settings
-from flight_scanner.models import FlightAlertRequest,FlightSearchResult
+from flight_scanner.models import FlightAlertRequest, FlightSearchResult, FlightSearchResultPriceHistory
 import requests
 from django.utils.timezone import now
 
@@ -45,14 +45,15 @@ def search_flights(far: FlightAlertRequest):
 
 def flight_itinerary_data_save(far:FlightAlertRequest):
     for result in search_flights(far)['data']:
-        fsr = FlightSearchResult()
-        fsr.flight_itinerary = result
-        fsr.trip_id = result['id']
-        fsr.flight_origin = result['flyFrom']
-        fsr.flight_destination = result['flyTo']
-        fsr.flight_price = result['price']
-        fsr.airliner_code = result['airlines']
-        fsr.save()
+        fsr,created = FlightSearchResult.objects.get_or_create(trip_id=result['id'],defaults={
+            'flight_origin':result['fly_from'],
+            'flight_destination':result['fly_to'],
+            'airliner_code':result['airlines'],
+            'flight_itinerary':result})
+        FlightSearchResultPriceHistory.objects.update_or_create(flight_search_result=fsr,defaults=
+        {'price':result['price'],
+         'leave_date':result['local_departure'],
+         'return_date':result['local_arrival'],})
 
 
 def update_flight_alert_request_task():
