@@ -2,7 +2,8 @@ from django.contrib import admin
 from flight_scanner.models import (
     FlightAlertRequest,
     FlightAlertOrigin,
-    FlightAlertDestination,
+    FlightAlertDestination, 
+    FlightSearchResult,
 )
 from flight_scanner.services.flight_alert_services import flight_itinerary_data_save
 
@@ -26,6 +27,6 @@ class FlightAlertRequestAdmin(admin.ModelAdmin):
         flight_itinerary_data_save(form.instance)
 
 
-@admin.register(FlightSearchResults)
+@admin.register(FlightSearchResult)
 class FlightSearchResultsAdmin(admin.ModelAdmin):
     inlines = []

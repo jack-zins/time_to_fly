@@ -1,6 +1,7 @@
 from django.conf import settings
 from flight_scanner.models import FlightAlertRequest,FlightSearchResult
 import requests
+from django.utils.timezone import now
 
 
 def get_origin_string(far:FlightAlertRequest):
@@ -52,3 +53,8 @@ def flight_itinerary_data_save(far:FlightAlertRequest):
         fsr.flight_price = result['price']
         fsr.airliner_code = result['airlines']
         fsr.save()
+
+
+def update_flight_alert_request_task():
+    for far in FlightAlertRequest.objects.filter(end_date__gt=now()):
+        flight_itinerary_data_save(far)
