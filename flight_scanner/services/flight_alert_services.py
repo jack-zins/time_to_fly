@@ -53,7 +53,7 @@ def flight_itinerary_data_save(far: FlightAlertRequest):
         FlightSearchResultPriceHistory.objects.update_or_create(flight_search_result=fsr, date=now(), defaults=
         {'price': result['price'], })
         fsr.flight_alert_requests.add(far)
-
+  
 
 def update_flight_alert_request_task():
     for far in FlightAlertRequest.objects.filter(end_date__gt=now()):
