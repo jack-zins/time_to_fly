@@ -35,7 +35,7 @@ class FlightAlertDestination(models.Model):
 
 
 class FlightSearchResult(models.Model):
-    flight_alert_request = models.ForeignKey('FlightAlertRequest', on_delete=models.CASCADE)
+    flight_alert_requests = models.ManyToManyField('FlightAlertRequest')
     trip_id = models.CharField(max_length=250)
     flight_origin = models.CharField(max_length=4)
     flight_destination = models.CharField(max_length=4)
