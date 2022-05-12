@@ -46,13 +46,14 @@ def search_flights(far: FlightAlertRequest):
 def flight_itinerary_data_save(far: FlightAlertRequest):
     for result in search_flights(far)['data']:
         fsr, created = FlightSearchResult.objects.get_or_create(trip_id=result['id'], defaults={
-            'flight_origin': result['fly_from'],
-            'flight_destination': result['fly_to'],
+            'flight_origin': result['flyFrom'],
+            'flight_destination': result['flyTo'],
             'airliner_code': result['airlines'],
             'flight_itinerary': result})
         FlightSearchResultPriceHistory.objects.update_or_create(flight_search_result=fsr, date=now(), defaults=
         {'price': result['price'], })
-
+        fsr.flight_alert_requests.add(far)
+  
 
 def update_flight_alert_request_task():
     for far in FlightAlertRequest.objects.filter(end_date__gt=now()):
